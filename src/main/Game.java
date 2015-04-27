@@ -6,13 +6,9 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +25,6 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import model.Shape;
 
 /**
@@ -54,7 +49,7 @@ public class Game implements Config, EventHandler<KeyEvent> {
 
     private Timer autoDown;
     private boolean cancelAutoDown = false;
-    private long difficulty = 1200;
+    private long difficulty = 800;
     private boolean overTheLimit = false;
 
     public Game(Stage parent, ObservableList<MediaPlayer> sounds) {
@@ -276,7 +271,7 @@ public class Game implements Config, EventHandler<KeyEvent> {
             if (times[i] == Config.width_block) {
                 for (int a = 0; a < every_blocks.size(); a++) {
                     int list_y = (int) every_blocks.get(a).getY();
-                    if (list_y >= unique[i] && list_y < unique[i]+Config.CELLSIZE) {
+                    if (list_y == unique[i] && list_y < unique[i]+Config.CELLSIZE) {
                         every_blocks.remove(a);
                         removedFromList = true;
                     }
@@ -284,6 +279,7 @@ public class Game implements Config, EventHandler<KeyEvent> {
                 for (Rectangle rec : every_blocks) {
                     if ((int) (rec.getY()) < unique[i]) {
                         rec.setY(rec.getY()+Config.CELLSIZE);
+                        System.out.println("Rec X: "+rec.getX()+" | Rec Y: "+rec.getY());
                     }
                 }
             }

@@ -30,15 +30,15 @@ public class Launcher extends Application implements conf.Config {
     
     private void loadResources() {
         sounds = FXCollections.observableArrayList();
-        Media beep_media = new Media("file:///" + System.getProperty("user.dir").replace('\\', '/') + "/" + "resources/space-beep.mp3");
-        Media background_media = new Media("file:///" + System.getProperty("user.dir").replace('\\', '/') + "/" + "resources/dust.mp3");
+        Media beep_media = new Media("file:///C:/Users/JAVA%20M2/Documents/NetBeansProjects/Block-Monster/resources/space-beep.mp3");
+        Media background_media = new Media("file:///C:/Users/JAVA%20M2/Documents/NetBeansProjects/Block-Monster/resources/dust.mp3");
         MediaPlayer beep = new MediaPlayer(beep_media);
         MediaPlayer atmosphere = new MediaPlayer(background_media);
-        beep.setVolume(0.9);
+        beep.setVolume(1);
         beep.setStopTime(Duration.millis(200));
         beep.setStartTime(Duration.millis(50));
         beep.setOnStopped(() -> sounds.get(0).play());
-        atmosphere.setVolume(0.15);
+        atmosphere.setVolume(0);
         sounds.add(beep);
         sounds.add(atmosphere);
     }
